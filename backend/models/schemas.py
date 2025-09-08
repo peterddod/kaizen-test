@@ -5,7 +5,8 @@ class LandingPageRequest(BaseModel):
     content: str
     client_name: Optional[str] = "Chill.ie"
     campaign_name: Optional[str] = None
-
+    campaign_url: Optional[str] = None
+    
 class KeywordSuggestion(BaseModel):
     keywords: List[str]
     

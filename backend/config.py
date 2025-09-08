@@ -10,15 +10,18 @@ class Settings(BaseSettings):
     HOST: str = os.getenv("HOST", "0.0.0.0")
     PORT: int = int(os.getenv("PORT", "8000"))
     DEBUG: bool = os.getenv("DEBUG", "True").lower() == "true"
-    CORS_ORIGINS: List[str] = eval(os.getenv("CORS_ORIGINS", '["http://localhost:5173", "http://localhost:3000"]'))
+    CORS_ORIGINS: List[str] = ["http://localhost:5173", "http://localhost:3000"]
     
     OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
-    OPENAI_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-4")
+    OPENAI_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-5-nano")
+    OPENAI_TEMPERATURE: float = float(os.getenv("OPENAI_TEMPERATURE", "1"))
+    OPENAI_MAX_TOKENS: int = int(os.getenv("OPENAI_MAX_TOKENS", "10000"))
     
     DATAFORSEO_LOGIN: str = os.getenv("DATAFORSEO_LOGIN", "")
     DATAFORSEO_PASSWORD: str = os.getenv("DATAFORSEO_PASSWORD", "")
     
-    class Config:
-        env_file = os.getenv("ENV_FILE_NAME", ".env.local")
+    model_config = {
+        "env_file": ".env.local",
+    }
 
 settings = Settings()
