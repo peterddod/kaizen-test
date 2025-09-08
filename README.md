@@ -25,9 +25,9 @@ A full-stack application with FastAPI Python backend and React frontend.
 
 4. Start the backend server:
    ```
-   python app.py
+   python main.py
    # Or alternatively:
-   uvicorn app:app --reload
+   uvicorn main:app --reload 
    ```
 
 5. Access the API documentation:
@@ -63,7 +63,3 @@ A full-stack application with FastAPI Python backend and React frontend.
   - API endpoints are defined in `app.py`
   - API documentation available at `http://localhost:8000/docs`
 - Frontend code is in the `frontend/src` directory
-
-## License
-
-[Your License]
