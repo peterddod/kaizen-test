@@ -14,9 +14,11 @@ class DataForSEOService:
     
     async def get_serp_results(self, keyword: str, location: str = "Ireland") -> List[Dict]:
         try:
-            logger.info(f"Fetching SERP results for keyword: {keyword}")
+            logger.info(f"Fetching SERP results for keyword: {keyword}, location: {location}")
+            logger.info(f"DataForSEO credentials configured: {bool(settings.DATAFORSEO_LOGIN and settings.DATAFORSEO_PASSWORD)}")
             
             endpoint = f"{self.base_url}/serp/google/organic/live/regular"
+            logger.info(f"Using endpoint: {endpoint}")
             
             headers = {
                 "Authorization": f"Basic {self.auth_header}",
@@ -58,12 +60,25 @@ class DataForSEOService:
                 logger.info(f"Found {len(results)} organic results")
                 return results
             else:
-                error_msg = f"DataForSEO API error: {response.status_code} - {response.text}"
+                try:
+                    response_text = response.text
+                except Exception as text_error:
+                    response_text = f"Could not read response text: {str(text_error)}"
+                
+                error_msg = f"DataForSEO API error: {response.status_code} - {response_text}"
                 logger.error(error_msg)
+                logger.error(f"Request headers: {headers}")
+                logger.error(f"Request payload: {payload}")
                 # Return empty results instead of failing
                 return []
                 
         except Exception as e:
-            logger.error(f"Error fetching SERP results: {str(e)}")
+            error_msg = str(e) if str(e) else f"Unknown error of type {type(e).__name__}"
+            logger.error(f"Error fetching SERP results: {error_msg}")
+            logger.error(f"Exception type: {type(e).__name__}")
+            logger.error(f"Exception args: {e.args}")
+            # Log the full traceback for debugging
+            import traceback
+            logger.error(f"Full traceback: {traceback.format_exc()}")
             # Return empty results on error
             return []

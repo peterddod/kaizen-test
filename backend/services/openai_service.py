@@ -46,15 +46,14 @@ async def generate_keywords(content: str, client_name: str, campaign_name: str =
                 {"role": "system", "content": "You are an SEO expert helping identify news coverage."},
                 {"role": "user", "content": prompt}
             ],
-            temperature=settings.OPENAI_TEMPERATURE,
             max_completion_tokens=settings.OPENAI_MAX_TOKENS
         )
         
         keywords_text = response.choices[0].message.content
         keywords = [k.strip() for k in keywords_text.split(',')]
         
-        # Ensure we have exactly 10 keywords
-        keywords = keywords[:10] if len(keywords) > 10 else keywords
+        # Ensure we have exactly 15 keywords
+        keywords = keywords[:15] if len(keywords) > 15 else keywords
         
         logger.info(f"Generated {len(keywords)} keywords successfully")
         return keywords
