@@ -7,18 +7,18 @@ load_dotenv()
 
 class Settings(BaseSettings):
     # API Configuration
-    HOST: str = os.getenv("HOST", "0.0.0.0")
-    PORT: int = int(os.getenv("PORT", "8000"))
-    DEBUG: bool = os.getenv("DEBUG", "True").lower() == "true"
+    HOST: str = "0.0.0.0"
+    PORT: int = 8000
+    DEBUG: bool = True
     CORS_ORIGINS: List[str] = ["http://localhost:5173", "http://localhost:3000"]
     
-    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
-    OPENAI_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-5-nano")
-    OPENAI_TEMPERATURE: float = float(os.getenv("OPENAI_TEMPERATURE", "1"))
-    OPENAI_MAX_TOKENS: int = int(os.getenv("OPENAI_MAX_TOKENS", "10000"))
+    OPENAI_API_KEY: str = ""
+    OPENAI_MODEL: str = "gpt-5-nano"
+    OPENAI_TEMPERATURE: float = 1.0
+    OPENAI_MAX_TOKENS: int = 10000
     
-    DATAFORSEO_LOGIN: str = os.getenv("DATAFORSEO_LOGIN", "")
-    DATAFORSEO_PASSWORD: str = os.getenv("DATAFORSEO_PASSWORD", "")
+    DATAFORSEO_LOGIN: str = ""
+    DATAFORSEO_PASSWORD: str = ""
     
     model_config = {
         "env_file": ".env.local",

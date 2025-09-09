@@ -14,7 +14,7 @@ const KeywordsList = ({ keywords, selectedKeyword }) => {
             >
               {keyword}
               {keyword === selectedKeyword && (
-                <span className="ml-2 text-sm text-blue-600">(Analyzed)</span>
+                <span className="ml-2 text-sm text-blue-600">(Analysed)</span>
               )}
             </li>
           ))}

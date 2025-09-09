@@ -17,14 +17,16 @@ async def generate_keywords(content: str, client_name: str, campaign_name: str =
         Analyze this landing page content and generate Google search keywords that journalists and websites might use to find articles about this PR campaign. You will be given a client name, a campaign name, a campaign URL, and a landing page content. You should not generate more than 15 keywords. Return the keywords in a comma-separated list.
         
         # Patterns
-        Generate keywords following these patterns:
+        Headings: H1, H2, H3 (example, "H1: The Counties With The Most Affordable Homes")
+
+        The following are some examples of keywords that you should generate, replacing the placeholders with the actual values:
         -	Campaign Name + “Client Name”
         -	Campaign URL/Landing Page H1 
         -	Press Release H1
         -	Press Release H1 + “Client Name”
 
         Some other example keywords:
-        -	All press release / landing page / uploaded document headings 
+        -	All press release / landing page / uploaded document headings (e.g. H1, H2, H3) 
         -	Any spokesperson named 
         -	The campaign name 
         -	The client name
